@@ -1,0 +1,23 @@
+trigger:
+  branches:
+    include:
+      - master  # This triggers the pipeline on pushes to master
+
+pool:
+  name: Default  # Using default pool, consider specifying an agent if needed
+
+steps:
+- script: echo "My first Azure Pipeline for Maven project"
+  displayName: 'Print a message'
+
+- script: mvn clean install  # Builds the Maven project
+  displayName: 'Build with Maven'
+
+- script: |
+    if [ -f target/SimpleMavenApp-1.0-SNAPSHOT.jar ]; then
+      java -jar target/SimpleMavenApp-1.0-SNAPSHOT.jar
+    else
+      echo "JAR file not found. Build may have failed."
+      exit 1
+    fi
+  displayName: 'Run JAR if exists'
