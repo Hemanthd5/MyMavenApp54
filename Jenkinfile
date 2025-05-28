@@ -8,7 +8,7 @@ jdk 'JDK'
 stages {
 stage('Checkout') {
 steps {
-git branch: ‘main’, url: 'https://github.com/Hemanthd5/MyMavenApp54.git'
+git branch: ‘master’, url: 'https://github.com/Hemanthd5/MyMavenApp54.git'
 }
 }
 
